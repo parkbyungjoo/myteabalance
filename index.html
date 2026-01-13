@@ -116,23 +116,34 @@
 
     <!-- Main Content -->
     <div class="max-w-4xl mx-auto px-6 -mt-8 relative z-20 pb-20">
-        <!-- Render Pillars -->
-        <div class="grid grid-cols-4 gap-2 md:gap-4 text-center mb-0 mt-4 px-2 hidden" id="pillarDisplay">
-            <div class="space-y-2">
-                <span class="text-[10px] uppercase tracking-widest text-stone-400 font-bold block mb-1">Hour</span>
-                <div id="hP" class="space-y-1 font-medium text-sm md:text-base"></div>
-            </div>
-            <div class="space-y-2">
-                <span class="text-[10px] uppercase tracking-widest text-stone-400 font-bold block mb-1">Day</span>
-                <div id="dP" class="space-y-1 font-medium text-sm md:text-base"></div>
-            </div>
-            <div class="space-y-2">
-                <span class="text-[10px] uppercase tracking-widest text-stone-400 font-bold block mb-1">Month</span>
-                <div id="mP" class="space-y-1 font-medium text-sm md:text-base"></div>
-            </div>
-            <div class="space-y-2">
-                <span class="text-[10px] uppercase tracking-widest text-stone-400 font-bold block mb-1">Year</span>
-                <div id="yP" class="space-y-1 font-medium text-sm md:text-base"></div>
+        <!-- Life Energy Profile Card -->
+        <div class="hidden mt-12 animate-in fade-in slide-in-from-bottom-4 duration-700" id="pillarDisplay">
+            <div class="bg-white rounded-3xl shadow-xl p-6 md:p-8 border border-stone-200">
+                <h2 class="serif text-2xl md:text-3xl text-stone-800 text-center mb-6 tracking-wide">
+                    Your Life Energy Profile
+                </h2>
+                <div class="grid grid-cols-4 gap-2 md:gap-4 text-center">
+                    <div class="space-y-2">
+                        <span
+                            class="text-[10px] uppercase tracking-widest text-stone-400 font-bold block mb-1">Hour</span>
+                        <div id="hP" class="space-y-1 font-medium text-sm md:text-base"></div>
+                    </div>
+                    <div class="space-y-2">
+                        <span
+                            class="text-[10px] uppercase tracking-widest text-stone-400 font-bold block mb-1">Day</span>
+                        <div id="dP" class="space-y-1 font-medium text-sm md:text-base"></div>
+                    </div>
+                    <div class="space-y-2">
+                        <span
+                            class="text-[10px] uppercase tracking-widest text-stone-400 font-bold block mb-1">Month</span>
+                        <div id="mP" class="space-y-1 font-medium text-sm md:text-base"></div>
+                    </div>
+                    <div class="space-y-2">
+                        <span
+                            class="text-[10px] uppercase tracking-widest text-stone-400 font-bold block mb-1">Year</span>
+                        <div id="yP" class="space-y-1 font-medium text-sm md:text-base"></div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -163,19 +174,36 @@
                     class="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-inner max-w-lg mx-auto transform hover:scale-[1.01] transition duration-300">
                     <h3 class="serif text-2xl mb-6">Recommended Teas</h3>
                     <div class="space-y-6 text-left">
-                        <div class="flex items-start gap-4">
-                            <div class="bg-white/20 p-2 rounded-full mt-1">🌿</div>
-                            <div>
-                                <h4 id="tea1Name" class="font-bold text-lg mb-1 text-white"></h4>
-                                <p id="tea1Desc" class="text-sm text-white/80 leading-relaxed"></p>
+                        <!-- Tea 1 -->
+                        <div class="flex flex-col gap-2">
+                            <div class="flex items-center justify-between gap-4">
+                                <div class="flex items-center gap-2">
+                                    <div class="bg-white/20 p-2 rounded-full">🌿</div>
+                                    <h4 id="tea1Name" class="font-bold text-lg text-white"></h4>
+                                </div>
+                                <a id="tea1Link" href="#" target="_blank"
+                                    class="px-3 py-1.5 bg-white text-stone-900 rounded-full text-[10px] font-bold uppercase tracking-wider hover:bg-stone-200 transition shadow-sm whitespace-nowrap">
+                                    Shop Tea
+                                </a>
                             </div>
+                            <p id="tea1Desc" class="text-sm text-white/80 leading-relaxed pl-12"></p>
                         </div>
-                        <div class="flex items-start gap-4">
-                            <div class="bg-white/20 p-2 rounded-full mt-1">🍵</div>
-                            <div>
-                                <h4 id="tea2Name" class="font-bold text-lg mb-1 text-white"></h4>
-                                <p id="tea2Desc" class="text-sm text-white/80 leading-relaxed"></p>
+
+                        <div class="h-px bg-white/10 w-full"></div>
+
+                        <!-- Tea 2 -->
+                        <div class="flex flex-col gap-2">
+                            <div class="flex items-center justify-between gap-4">
+                                <div class="flex items-center gap-2">
+                                    <div class="bg-white/20 p-2 rounded-full">🍵</div>
+                                    <h4 id="tea2Name" class="font-bold text-lg text-white"></h4>
+                                </div>
+                                <a id="tea2Link" href="#" target="_blank"
+                                    class="px-3 py-1.5 bg-white text-stone-900 rounded-full text-[10px] font-bold uppercase tracking-wider hover:bg-stone-200 transition shadow-sm whitespace-nowrap">
+                                    Shop Tea
+                                </a>
                             </div>
+                            <p id="tea2Desc" class="text-sm text-white/80 leading-relaxed pl-12"></p>
                         </div>
                     </div>
                 </div>
@@ -185,10 +213,11 @@
                     <p id="lifestyleTip" class="text-sm text-white/80 leading-relaxed"></p>
                 </div>
 
-                <div class="pt-4">
-                    <a id="amazonLink" href="#" target="_blank"
-                        class="inline-block bg-white text-stone-900 px-8 py-3 rounded-full font-bold text-sm hover:bg-stone-100 transition shadow-lg transform hover:scale-105 duration-200">Shop
-                        Lucky Teas on Amazon →</a>
+                <div class="pt-4 flex flex-col md:flex-row gap-4 justify-center">
+                    <a id="toolLink" href="#" target="_blank"
+                        class="inline-block bg-white text-stone-900 px-8 py-4 rounded-full font-bold text-sm hover:bg-stone-100 transition shadow-lg transform hover:scale-105 duration-200 border border-transparent">
+                        Shop Tea Ritual Tools →
+                    </a>
                 </div>
             </div>
         </div>
@@ -261,7 +290,7 @@
                             class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-700 to-transparent opacity-50">
                         </div>
                         <div class="flex items-center gap-4 mb-4">
-                            <span class="bg-black/30 p-3 rounded-full text-xl shadow-inner text-amber-500">�</span>
+                            <span class="bg-black/30 p-3 rounded-full text-xl shadow-inner text-amber-500">💼</span>
                             <h4 class="font-bold text-stone-100 text-lg tracking-wide uppercase text-xs">Social & Career
                                 Potential</h4>
                         </div>
@@ -288,7 +317,8 @@
                         passers in California history.</p>
                 </div>
             </div>
-            <p class="text-xs text-gray-400 mt-8 uppercase tracking-widest">© 2026 Tea Therapy. All Rights Reserved.</p>
+            <p class="text-xs text-gray-400 mt-8 uppercase tracking-widest">© 2026 Dr. Byungjoo Park. All Rights
+                Reserved.</p>
         </div>
     </footer>
 
@@ -355,6 +385,13 @@
         };
         const ELEMENT_COLOR_NAME = {
             "Wood": "Green", "Fire": "Red", "Earth": "Yellow/Brown", "Metal": "White/Silver", "Water": "Black/Blue"
+        };
+        const ELEMENT_WALLPAPER_DESC = {
+            "Wood": "a landscape filled with fresh green forests",
+            "Fire": "an image rich in warm red and bright colors",
+            "Earth": "a landscape with golden earth or mountain tones",
+            "Metal": "a clean, minimalist background with white or silver",
+            "Water": "an image featuring deep blue waters or night scenery"
         };
 
         // Add Event Listener to auto-check DST on date change
@@ -486,11 +523,23 @@
             return {
                 personality: highlightKeywords(DM_DESC[dG]),
                 wealth: `
-                    <p class="mb-2"><b>Your Wealth Element is ${highlightKeywords(wealthEl)}:</b> ${highlightKeywords(ELEMENT_WEALTH_ADVICE[wealthEl])}</p>
-                    <p class="text-xs text-amber-700/70 border-t border-amber-200/50 pt-2 mt-2">
-                        ${counts[wealthEl] > 0 ? "✅ You have this potential naturally in your chart." : "⚠️ This element is missing/weak. Seek these fields or partners intentionally."}
-                    </p>
-                    <p class="mt-4 mb-2"><b>Your Career Guide is ${highlightKeywords(careerEl)}:</b> ${highlightKeywords(ELEMENT_CAREER_ADVICE[careerEl])}</p>
+                    <div class="mb-6">
+                        <h5 class="text-amber-500 font-bold uppercase text-[10px] tracking-widest mb-2">💰 Money Source (Wealth Element)</h5>
+                        <p class="mb-1 text-white"><b>Target: ${highlightKeywords(wealthEl)}</b></p>
+                        <p class="text-sm text-stone-400 mb-2">${highlightKeywords(ELEMENT_WEALTH_ADVICE[wealthEl])}</p>
+                        <p class="text-xs text-amber-500/80 mt-2 italic">
+                            ${counts[wealthEl] > 0 ? "✅ You have this asset naturally. Use it!" : "💡 <b>Strategy:</b> This is weak in your chart. Intentionally seek this element to boost income."}
+                        </p>
+                    </div>
+
+                    <div>
+                        <h5 class="text-amber-500 font-bold uppercase text-[10px] tracking-widest mb-2">🏆 Social Status (Career Element)</h5>
+                        <p class="mb-1 text-white"><b>Target: ${highlightKeywords(careerEl)}</b></p>
+                        <p class="text-sm text-stone-400 mb-2">${highlightKeywords(ELEMENT_CAREER_ADVICE[careerEl])}</p>
+                        <p class="text-xs text-amber-500/80 mt-2 italic">
+                            ${counts[careerEl] > 0 ? "✅ You have this authority naturally. Build your reputation!" : "💡 <b>Strategy:</b> This is weak. You must <i>borrow</i> this energy. Working in these fields or partnering with such people is your ladder to success."}
+                        </p>
+                    </div>
                 `,
                 yearDesc: `Your roots are colored by <b>${highlightKeywords(GAN_EL[yG])}</b> energy, characterizing your early years with ${highlightKeywords(ELEMENT_LIFE_DESC[GAN_EL[yG]])}`,
                 monthDesc: `Your youth and social environment are influenced by <b>${highlightKeywords(GAN_EL[mG])}</b>, bringing a theme of ${highlightKeywords(ELEMENT_LIFE_DESC[GAN_EL[mG]])}`,
@@ -552,8 +601,60 @@
             [GAN_EL[yG], ZHI_EL[yZ], GAN_EL[mG], ZHI_EL[mZ], GAN_EL[dG], ZHI_EL[dZ], GAN_EL[hG], ZHI_EL[hZ]].forEach(el => counts[el]++);
             document.getElementById('elementCounts').innerHTML = highlightKeywords(`<span>WOOD: ${counts.Wood}</span><span>FIRE: ${counts.Fire}</span><span>EARTH: ${counts.Earth}</span><span>METAL: ${counts.Metal}</span><span>WATER: ${counts.Water}</span>`);
 
-            let yongSin = Object.keys(counts).reduce((a, b) => counts[a] < counts[b] ? a : b);
-            if (counts.Wood >= 4) yongSin = (counts.Fire === 0) ? "Fire" : "Metal";
+            // Advanced Yongsin Logic
+            function calculateAdvancedYongsin(counts) {
+                // 1. Check for Dominant Element (>=4) -> Must Drain (Child)
+                const els = ["Wood", "Fire", "Earth", "Metal", "Water"];
+                let maxEl = Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
+
+                // Map of Child elements (To Drain)
+                const childMap = { "Wood": "Fire", "Fire": "Earth", "Earth": "Metal", "Metal": "Water", "Water": "Wood" };
+
+                if (counts[maxEl] >= 4) {
+                    return childMap[maxEl];
+                }
+
+                // 2. Missing Element (0 Count) - Priority
+                let missing = els.filter(el => counts[el] === 0);
+                if (missing.length > 0) {
+                    for (let mEl of missing) {
+                        // Safety Check: Is it attacked by a Strong Element (>=3)?
+                        const attackerMap = { "Wood": "Metal", "Fire": "Water", "Earth": "Wood", "Metal": "Fire", "Water": "Earth" };
+                        const attacker = attackerMap[mEl];
+
+                        // If Attacker is Strong (>=3), recommend Bridge (Mother) instead.
+                        if (counts[attacker] >= 3) {
+                            const motherMap = { "Wood": "Water", "Fire": "Wood", "Earth": "Fire", "Metal": "Earth", "Water": "Metal" };
+                            return motherMap[mEl];
+                        }
+                    }
+                    return missing[0];
+                }
+
+                // 3. Tong-gwan (Bridge) Logic for Clashes (Attacker >= 3 vs Victim <= 1)
+                // Metal vs Wood -> Water
+                if (counts.Metal >= 3 && counts.Wood <= 1) return "Water";
+                // Water vs Fire -> Wood
+                if (counts.Water >= 3 && counts.Fire <= 1) return "Wood";
+                // Wood vs Earth -> Fire
+                if (counts.Wood >= 3 && counts.Earth <= 1) return "Fire";
+                // Fire vs Metal -> Earth
+                if (counts.Fire >= 3 && counts.Metal <= 1) return "Earth";
+                // Earth vs Water -> Metal
+                if (counts.Earth >= 3 && counts.Water <= 1) return "Metal";
+
+                // 4. Fallback: Simplest Deficiency (Standard Balance)
+                // Find all elements with the minimum count
+                let minCount = Math.min(...Object.values(counts));
+                let candidates = els.filter(el => counts[el] === minCount);
+
+                // Tie-breaker: If mixed, prioritize 'Water' or 'Fire' for temperature balance (Jo-hoo), 
+                // but for simplicity, return the first one found or random. 
+                // Using first one ensures deterministic result.
+                return candidates[0];
+            }
+
+            let yongSin = calculateAdvancedYongsin(counts);
 
             // --- Dynamic Theme Coloring ---
             // Reset common bg classes
@@ -561,41 +662,42 @@
             // Apply new dynamic class
             resultArea.classList.add(THEME_COLORS[yongSin].bg);
 
+            const amazonTag = "ricecakeusa-20";
             const teaData = {
                 Wood: {
                     teas: [
-                        { name: "Green Tea", desc: "Fresh and vitalizing to support new growth." },
-                        { name: "Peppermint Tea", desc: "Cooling and clearing to help Wood energy extend freely." }
+                        { name: "Green Tea", desc: "Your chart lacks Wood (Growth Energy). Without it, you may feel stagnant or uninspired. Green Tea provides the vital antioxidants and fresh energy needed to jumpstart your metabolism and creativity.", query: "Premium+Green+Tea" },
+                        { name: "Peppermint Tea", desc: "Deficient Wood can lead to tension and liver stress. Peppermint naturally relaxes smooth muscles and clears the mind, simulating the free-flowing nature of Wood energy you are missing.", query: "Organic+Peppermint+Tea" }
                     ],
-                    query: "Green+Peppermint+Tea"
+                    toolQuery: "Bamboo+Tea+Tray+Set"
                 },
                 Fire: {
                     teas: [
-                        { name: "Black Tea (Earl Grey)", desc: "Warm and lifting. Supports the Heart and circulation." },
-                        { name: "Rooibos Tea", desc: "A naturally caffeine-free red tea that ignites gentle warmth." }
+                        { name: "Black Tea (Earl Grey)", desc: "A lack of Fire (Passion Energy) can result in low circulation or cold hands/feet. The fermentation in Black Tea creates warming properties that physically heat the body and stimulate the heart.", query: "Earl+Grey+Black+Tea" },
+                        { name: "Rooibos Tea", desc: "Missing Fire energy often means low vitality. Rooibos is rich in minerals and electrolytes, acting as a caffeine-free battery recharger to restore your natural warmth and radiance.", query: "Organic+Rooibos+Tea" }
                     ],
-                    query: "Earl+Grey+Rooibos+Tea"
+                    toolQuery: "Glass+Teapot+with+Warmer"
                 },
                 Earth: {
                     teas: [
-                        { name: "Chamomile Tea", desc: "Soothing and settling for the stomach and center." },
-                        { name: "Barley / Corn Silk Tea", desc: "Earthy, sweet, and grounding to stabilize energy." }
+                        { name: "Chamomile Tea", desc: "Weak Earth energy manifests as digestive issues or worry. Chamomile is scientifically proven to soothe the gut-brain axis, providing the grounding stability your body currently lacks.", query: "Organic+Chamomile+Tea" },
+                        { name: "Barley / Corn Silk Tea", desc: "Without Earth (Stability), you may feel ungrounded. These grain-based teas provide essential minerals and a comforting, neutral energy that settles the stomach and reinforces your physical center.", query: "Roasted+Barley+Tea" }
                     ],
-                    query: "Chamomile+Barley+Tea"
+                    toolQuery: "Ceramic+Tea+Mug+Set"
                 },
                 Metal: {
                     teas: [
-                        { name: "Ginger Tea", desc: "Pungent and dispersing to clear the Lungs and focus." },
-                        { name: "White Tea", desc: "Pure and light to refine and cleanse the system." }
+                        { name: "Ginger Tea", desc: "A deficiency in Metal (Structure) can weaken the lungs and immune defense. Ginger's pungency warms the lungs and boosts immunity, acting as a protective shield for your system.", query: "Organic+Ginger+Tea" },
+                        { name: "White Tea", desc: "Lacking Metal energy can make you feel cluttered or overwhelmed. White Tea is the least processed, offering pure, high-potency antioxidants that help detoxify and refine your mental clarity.", query: "Premium+White+Tea" }
                     ],
-                    query: "Ginger+White+Tea"
+                    toolQuery: "White+Porcelain+Tea+Set"
                 },
                 Water: {
                     teas: [
-                        { name: "Berry Tea", desc: "Dark and rich fluids to nourish the Kidneys." },
-                        { name: "Pu-erh Tea", desc: "Deeply fermented and grounding to store wisdom." }
+                        { name: "Black Soybean Tea", desc: "Water energy corresponds to the Kidneys and the color Black. Black Soybeans are the premier 'Black Food' in Oriental medicine, famous for replenishing vital essence (Jing) and preventing aging.", query: "Black+Soybean+Tea" },
+                        { name: "Pu-erh Tea", desc: "Deficient Water energy leads to dryness and burnout. Pu-erh is a fermented, living tea that supports deep hydration and gut health, restoring the deep reserves of wisdom and stamina you need.", query: "Aged+Puerh+Tea" }
                     ],
-                    query: "Berry+Puerh+Tea"
+                    toolQuery: "Yixing+Clay+Teapot"
                 }
             };
 
@@ -606,19 +708,21 @@
             // Render 2 Teas
             document.getElementById('tea1Name').innerText = "1. " + result.teas[0].name;
             document.getElementById('tea1Desc').innerHTML = highlightKeywords(result.teas[0].desc);
+            document.getElementById('tea1Link').href = `https://www.amazon.com/s?k=${result.teas[0].query}&tag=${amazonTag}`;
+
             document.getElementById('tea2Name').innerText = "2. " + result.teas[1].name;
-            document.getElementById('tea2Desc').innerText = highlightKeywords(result.teas[1].desc);
+            document.getElementById('tea2Desc').innerHTML = highlightKeywords(result.teas[1].desc);
+            document.getElementById('tea2Link').href = `https://www.amazon.com/s?k=${result.teas[1].query}&tag=${amazonTag}`;
 
             // Lifestyle Tip
-            document.getElementById('lifestyleTip').innerHTML = highlightKeywords(`Boost your vitality by keeping <b>${ELEMENT_COLOR_NAME[yongSin]}</b> close to you. Setting your <b>phone wallpaper</b> to a ${yongSin.toLowerCase()} landscape or wearing <b>${ELEMENT_COLOR_NAME[yongSin]} clothes</b> can act as a daily habit to balance your deficient energy.`);
+            document.getElementById('lifestyleTip').innerHTML = highlightKeywords(`Boost your vitality by keeping <b>${ELEMENT_COLOR_NAME[yongSin]}</b> close to you. Setting your <b>phone wallpaper</b> to ${ELEMENT_WALLPAPER_DESC[yongSin]} or wearing <b>${ELEMENT_COLOR_NAME[yongSin]} clothes</b> can act as a daily habit to balance your deficient energy.`);
 
-            // Amazon Affiliate Link
-            // REPLACE 'saju-tea-20' WITH YOUR ACTUAL AMAZON ASSOCIATE TAG
-            const amazonTag = "ricecakeusa-20";
-            document.getElementById('amazonLink').href = `https://www.amazon.com/s?k=${result.query}&tag=${amazonTag}`;
+            // Tools Button
+            document.getElementById('toolLink').href = `https://www.amazon.com/s?k=${result.toolQuery}&tag=${amazonTag}`;
+            document.getElementById('toolLink').innerText = `Shop ${yongSin} Ritual Tools →`;
 
             const dstMsg = applyCorrection ? " w/ DST Correction" : "";
-            document.getElementById('analysisDesc').innerHTML = `your energy profile shows a need for <b class="${THEME_COLORS[yongSin].accent}">${yongSin}</b>. We have selected teas and colors to fill this gap and restore harmony.`;
+            document.getElementById('analysisDesc').innerHTML = `Your energy profile shows a need for <b class="${THEME_COLORS[yongSin].accent}">${yongSin}</b>. We have selected teas and colors to fill this gap and restore harmony.`;
 
             // --- Enable General Analysis ---
             const genData = getGenAnalysis(dG, dZ, yG, mG, hG, counts);
