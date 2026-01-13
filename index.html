@@ -58,19 +58,76 @@
     <div class="relative w-full overflow-hidden bg-stone-900 text-stone-100 shadow-2xl pb-16">
         <div class="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none"
             style="background: radial-gradient(circle at 50% 50%, #57534e 0%, #1c1917 100%);"></div>
-        <div class="max-w-xl mx-auto px-6 py-16 relative z-10 text-center">
+        <div class="max-w-2xl mx-auto px-6 py-16 relative z-10">
             <span
-                class="text-amber-400 font-bold tracking-[0.3em] uppercase text-xs mb-4 block animate-in fade-in slide-in-from-bottom-4 duration-700">Oriental
-                Wisdom</span>
+                class="text-amber-400 font-bold tracking-[0.3em] uppercase text-xs mb-4 block animate-in fade-in slide-in-from-bottom-4 duration-700 text-center">Ancient
+                Life Wisdom</span>
             <h1
-                class="serif text-4xl md:text-6xl font-medium mb-6 animate-in fade-in slide-in-from-bottom-6 duration-1000 delay-100 leading-tight">
-                Life Energy<br /><span class="italic text-stone-400 text-3xl md:text-5xl">& Vitality
-                    Analysis</span>
+                class="serif text-4xl md:text-6xl font-medium mb-6 animate-in fade-in slide-in-from-bottom-6 duration-1000 delay-100 leading-tight text-center">
+                Discover Your<br /><span class="italic text-amber-400">Life Energy Balance</span>
             </h1>
+
+            <!-- What You'll Get Section -->
+            <div
+                class="bg-white/5 backdrop-blur-sm rounded-3xl p-6 mb-8 border border-white/10 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
+                <h2 class="text-amber-400 font-bold text-sm uppercase tracking-wider mb-4 text-center">What You'll
+                    Receive</h2>
+                <div class="grid md:grid-cols-2 gap-4 text-sm text-stone-300">
+                    <div class="flex items-start gap-3">
+                        <span class="text-amber-400 text-lg">📊</span>
+                        <div>
+                            <p class="font-semibold text-white mb-1">Your Life Energy Profile</p>
+                            <p class="text-xs text-stone-400">Based on your birth date & time using Myungrihak (Korean
+                                Four Pillars)</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-amber-400 text-lg">🍵</span>
+                        <div>
+                            <p class="font-semibold text-white mb-1">Personalized Tea Recommendations</p>
+                            <p class="text-xs text-stone-400">2 specific teas to balance your unique elemental
+                                deficiencies</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-amber-400 text-lg">💼</span>
+                        <div>
+                            <p class="font-semibold text-white mb-1">Career & Wealth Insights</p>
+                            <p class="text-xs text-stone-400">Discover your natural strengths and growth opportunities
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-amber-400 text-lg">🎨</span>
+                        <div>
+                            <p class="font-semibold text-white mb-1">Lifestyle Balance Tips</p>
+                            <p class="text-xs text-stone-400">Colors and habits to harmonize your daily energy</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Privacy & Credibility -->
+            <div
+                class="flex flex-wrap justify-center gap-4 mb-8 text-xs text-stone-400 animate-in fade-in duration-1000 delay-300">
+                <div class="flex items-center gap-2">
+                    <span class="text-green-400">🔒</span>
+                    <span>100% Private - No Data Stored</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-amber-400">⚡</span>
+                    <span>Instant Results</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-blue-400">🎓</span>
+                    <span>Created by Dr. Byungjoo Park</span>
+                </div>
+            </div>
+
             <p
-                class="text-stone-400 text-sm md:text-base mb-10 leading-relaxed max-w-md mx-auto animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
-                Your unique elemental pattern is determined by the specific Year, Month, Day, and Hour of your birth.
-                Discover your innate rhythm and the perfect tea to harmonize your energy.
+                class="text-stone-400 text-sm md:text-base mb-10 leading-relaxed text-center max-w-xl mx-auto animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-400">
+                Enter your birth information below to receive a comprehensive analysis of your elemental balance and
+                personalized wellness recommendations.
             </p>
 
             <!-- Input Card -->
@@ -89,7 +146,7 @@
                         <div class="flex justify-between items-end mb-2">
                             <label
                                 class="block text-xs uppercase tracking-widest text-stone-400 font-semibold ml-1">Birth
-                                Time (U.S. Local)</label>
+                                Time (Local)</label>
                             <span id="dstStatus"
                                 class="hidden text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-full border border-amber-500/30">Auto
                                 DST Applied</span>
@@ -100,6 +157,16 @@
                             * You can find the time recorded on your <b class="text-stone-400">Birth
                                 Certificate</b>.
                         </p>
+                    </div>
+
+                    <!-- Non-US Birth Option -->
+                    <div class="flex items-center gap-3 px-1">
+                        <input type="checkbox" id="nonUSBirth"
+                            class="w-4 h-4 rounded border-stone-600 bg-stone-800/50 text-amber-500 focus:ring-amber-500 focus:ring-offset-0 cursor-pointer">
+                        <label for="nonUSBirth" class="text-xs text-stone-400 cursor-pointer select-none">
+                            I was <b class="text-stone-300">not born in the U.S.</b> (Skip Daylight Saving Time
+                            calculation)
+                        </label>
                     </div>
 
                     <button onclick="calculate()"
@@ -551,8 +618,10 @@
         function calculate() {
             const dateStr = document.getElementById('date').value;
             const timeStr = document.getElementById('time').value;
-            // Auto-detect instead of manual check
-            const applyCorrection = isUSDST(dateStr);
+            const nonUSBirth = document.getElementById('nonUSBirth').checked;
+
+            // Auto-detect DST only if born in US
+            const applyCorrection = nonUSBirth ? false : isUSDST(dateStr);
 
             if (!dateStr || !timeStr) {
                 alert("Please enter birth date and time");
