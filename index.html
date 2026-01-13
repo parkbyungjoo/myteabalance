@@ -1,104 +1,508 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saju Tea Therapy | Precise 8-Pillars</title>
+    <title>Myungrihak: Elemental Statistics</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #fdfcf9; }
-        .serif { font-family: 'Playfair Display', serif; }
-        .pillar-card { background: white; border-radius: 12px; padding: 15px 5px; border: 1px solid #e5e7eb; }
-        .highlight { border: 2px solid #065f46; background-color: #f0fdf4; }
-        .btn-active { background-color: #065f46; color: white; border-color: #065f46; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fdfcf9;
+        }
+
+        .serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .pillar-card {
+            background: white;
+            border-radius: 12px;
+            padding: 15px 5px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .highlight {
+            border: 2px solid #065f46;
+            background-color: #f0fdf4;
+        }
+
+        .btn-active {
+            background-color: #065f46;
+            color: white;
+            border-color: #065f46;
+        }
     </style>
 </head>
-<body class="flex flex-col min-h-screen">
 
-    <div class="flex-grow max-w-xl mx-auto px-4 py-12">
-        <!-- Header -->
-        <header class="text-center mb-10">
-            <h1 class="serif text-4xl text-emerald-950 uppercase tracking-tight">Saju Tea Therapy</h1>
-            <p class="text-gray-500 mt-2 italic text-sm">Balanced Energy through the 8-Pillars.</p>
-        </header>
+<body class="bg-stone-50 text-stone-800 antialiased min-h-screen flex flex-col font-sans selection:bg-stone-200">
 
-        <!-- Input Section -->
-        <div class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 mb-8">
-            <div class="space-y-6">
-                <div>
-                    <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Gender</label>
-                    <div class="flex gap-4">
-                        <button onclick="setGender('Male')" id="btnMale" class="flex-1 py-3 border rounded-xl font-semibold transition btn-active">Male</button>
-                        <button onclick="setGender('Female')" id="btnFemale" class="flex-1 py-3 border rounded-xl font-semibold transition">Female</button>
+    <!-- Hero Section -->
+    <div class="relative w-full overflow-hidden bg-stone-900 text-stone-100 shadow-2xl pb-16">
+        <div class="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none"
+            style="background: radial-gradient(circle at 50% 50%, #57534e 0%, #1c1917 100%);"></div>
+        <div class="max-w-xl mx-auto px-6 py-16 relative z-10 text-center">
+            <span
+                class="text-amber-400 font-bold tracking-[0.3em] uppercase text-xs mb-4 block animate-in fade-in slide-in-from-bottom-4 duration-700">Oriental
+                Wisdom</span>
+            <h1
+                class="serif text-4xl md:text-6xl font-medium mb-6 animate-in fade-in slide-in-from-bottom-6 duration-1000 delay-100 leading-tight">
+                Life Energy<br /><span class="italic text-stone-400 text-3xl md:text-5xl">& Vitality
+                    Analysis</span>
+            </h1>
+            <p
+                class="text-stone-400 text-sm md:text-base mb-10 leading-relaxed max-w-md mx-auto animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
+                Your unique elemental pattern is determined by the specific Year, Month, Day, and Hour of your birth.
+                Discover your innate rhythm and the perfect tea to harmonize your energy.
+            </p>
+
+            <!-- Input Card -->
+            <div
+                class="bg-white/5 backdrop-blur-xl p-8 rounded-[30px] border border-white/10 shadow-2xl animate-in fade-in zoom-in duration-700 delay-300">
+                <div class="space-y-6 text-left">
+                    <div>
+                        <label
+                            class="block text-xs uppercase tracking-widest text-stone-400 mb-2 font-semibold ml-1">Date
+                            of Birth</label>
+                        <input type="date" id="date"
+                            class="w-full bg-stone-800/50 border border-stone-700 rounded-2xl px-5 py-4 text-stone-100 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition shadow-inner text-lg font-medium">
                     </div>
+
+                    <div>
+                        <div class="flex justify-between items-end mb-2">
+                            <label
+                                class="block text-xs uppercase tracking-widest text-stone-400 font-semibold ml-1">Birth
+                                Time (U.S. Local)</label>
+                            <span id="dstStatus"
+                                class="hidden text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-full border border-amber-500/30">Auto
+                                DST Applied</span>
+                        </div>
+                        <input type="time" id="time"
+                            class="w-full bg-stone-800/50 border border-stone-700 rounded-2xl px-5 py-4 text-stone-100 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition shadow-inner text-lg font-medium">
+                        <p class="text-[10px] text-stone-500 mt-2 ml-1 leading-relaxed">
+                            * You can find the time recorded on your <b class="text-stone-400">Birth
+                                Certificate</b>.
+                        </p>
+                    </div>
+
+                    <button onclick="calculate()"
+                        class="w-full bg-gradient-to-r from-amber-700 to-amber-600 hover:from-amber-600 hover:to-amber-500 text-white font-bold py-4 rounded-2xl shadow-lg transform transition hover:scale-[1.02] active:scale-[0.98] duration-200 text-lg tracking-wide border border-amber-500/20">
+                        Analyze My Energy
+                    </button>
+
+
                 </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div><label class="block text-[10px] font-bold text-gray-400 uppercase mb-2">Birth Date</label><input type="date" id="date" class="w-full border-b-2 py-2 outline-none focus:border-emerald-800 transition"></div>
-                    <div><label class="block text-[10px] font-bold text-gray-400 uppercase mb-2">Birth Time</label><input type="time" id="time" class="w-full border-b-2 py-2 outline-none focus:border-emerald-800 transition"></div>
-                </div>
-                <div class="flex items-center">
-                    <input type="checkbox" id="koreaTime" class="w-4 h-4 text-emerald-600 border-gray-300 rounded focus:ring-emerald-500">
-                    <label for="koreaTime" class="ml-2 text-xs text-gray-500 font-medium">Born in Korea? (Apply -30min correction)</label>
-                </div>
-                <button onclick="calculate()" class="w-full bg-emerald-950 text-white py-4 rounded-2xl font-bold hover:bg-emerald-800 transition shadow-lg">Analyze My Energy</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-4xl mx-auto px-6 -mt-8 relative z-20 pb-20">
+        <!-- Render Pillars -->
+        <div class="grid grid-cols-4 gap-2 md:gap-4 text-center mb-0 mt-4 px-2 hidden" id="pillarDisplay">
+            <div class="space-y-2">
+                <span class="text-[10px] uppercase tracking-widest text-stone-400 font-bold block mb-1">Hour</span>
+                <div id="hP" class="space-y-1 font-medium text-sm md:text-base"></div>
+            </div>
+            <div class="space-y-2">
+                <span class="text-[10px] uppercase tracking-widest text-stone-400 font-bold block mb-1">Day</span>
+                <div id="dP" class="space-y-1 font-medium text-sm md:text-base"></div>
+            </div>
+            <div class="space-y-2">
+                <span class="text-[10px] uppercase tracking-widest text-stone-400 font-bold block mb-1">Month</span>
+                <div id="mP" class="space-y-1 font-medium text-sm md:text-base"></div>
+            </div>
+            <div class="space-y-2">
+                <span class="text-[10px] uppercase tracking-widest text-stone-400 font-bold block mb-1">Year</span>
+                <div id="yP" class="space-y-1 font-medium text-sm md:text-base"></div>
             </div>
         </div>
 
-        <!-- Result Section -->
-        <div id="resultArea" class="hidden animate-in fade-in duration-700">
-            <div class="grid grid-cols-4 gap-2 mb-8 text-center text-xs">
-                <div class="pillar-card"><p class="text-[9px] text-gray-400 font-bold mb-1 uppercase tracking-tighter">Year</p><div id="yP" class="font-bold"></div></div>
-                <div class="pillar-card"><p class="text-[9px] text-gray-400 font-bold mb-1 uppercase tracking-tighter">Month</p><div id="mP" class="font-bold"></div></div>
-                <div class="pillar-card highlight"><p class="text-[9px] text-emerald-700 font-bold mb-1 uppercase tracking-tighter">Day</p><div id="dP" class="font-bold text-emerald-900"></div></div>
-                <div class="pillar-card"><p class="text-[9px] text-gray-400 font-bold mb-1 uppercase tracking-tighter">Hour</p><div id="hP" class="font-bold"></div></div>
+        <!-- Result Area (Hidden by Default) -->
+        <div id="resultArea"
+            class="hidden mt-8 w-full animate-in fade-in zoom-in duration-500 rounded-[50px] p-8 md:p-12 text-white relative shadow-2xl overflow-hidden min-h-[600px] flex flex-col justify-center transform transition-colors duration-1000">
+            <!-- Decorative Elements -->
+            <div
+                class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-white via-transparent to-transparent">
             </div>
 
-            <div class="bg-emerald-950 text-white rounded-[40px] p-8 text-center shadow-2xl">
-                <div id="targetElement" class="serif text-5xl mb-6 text-emerald-300"></div>
-                <div class="bg-white/5 rounded-2xl p-6 mb-8 text-sm leading-relaxed text-left border border-white/10">
-                    <p id="analysisDesc" class="text-emerald-50 mb-4"></p>
-                    <div id="elementCounts" class="flex justify-around text-[9px] font-bold tracking-tighter border-t border-white/10 pt-4 text-emerald-400"></div>
+            <div class="relative z-10 text-center space-y-8">
+                <div>
+                    <h2 class="text-xs uppercase tracking-[0.3em] opacity-80 mb-4 font-semibold">Your Balancing Element
+                    </h2>
+                    <div id="targetElement" class="text-4xl md:text-6xl serif font-medium mb-4 drop-shadow-md"></div>
+                    <div id="elementCounts"
+                        class="flex flex-wrap justify-center gap-3 text-[10px] uppercase tracking-widest opacity-70">
+                    </div>
                 </div>
-                <div class="pt-2">
-                    <p class="text-emerald-400 text-[10px] font-bold uppercase mb-2 tracking-widest">Recommended Amazon Tea</p>
-                    <h3 id="teaName" class="serif text-3xl mb-3"></h3>
-                    <p id="teaDesc" class="text-emerald-100/60 italic text-sm mb-6"></p>
-                    <a id="amazonLink" target="_blank" class="inline-block bg-white text-emerald-950 px-6 py-3 rounded-full font-bold text-sm hover:bg-emerald-100 transition shadow-md">Shop on Amazon →</a>
+
+                <div class="w-16 h-px bg-white/30 mx-auto"></div>
+
+                <p id="analysisDesc"
+                    class="text-lg md:text-xl leading-relaxed text-white/90 font-light max-w-2xl mx-auto"></p>
+
+                <div
+                    class="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/10 shadow-inner max-w-lg mx-auto transform hover:scale-[1.01] transition duration-300">
+                    <h3 class="serif text-2xl mb-6">Recommended Teas</h3>
+                    <div class="space-y-6 text-left">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-white/20 p-2 rounded-full mt-1">🌿</div>
+                            <div>
+                                <h4 id="tea1Name" class="font-bold text-lg mb-1 text-white"></h4>
+                                <p id="tea1Desc" class="text-sm text-white/80 leading-relaxed"></p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="bg-white/20 p-2 rounded-full mt-1">🍵</div>
+                            <div>
+                                <h4 id="tea2Name" class="font-bold text-lg mb-1 text-white"></h4>
+                                <p id="tea2Desc" class="text-sm text-white/80 leading-relaxed"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/5 max-w-lg mx-auto">
+                    <h4 class="font-bold text-xs uppercase tracking-widest mb-3 opacity-90">Luck Boosting Tip</h4>
+                    <p id="lifestyleTip" class="text-sm text-white/80 leading-relaxed"></p>
+                </div>
+
+                <div class="pt-4">
+                    <a id="amazonLink" href="#" target="_blank"
+                        class="inline-block bg-white text-stone-900 px-8 py-3 rounded-full font-bold text-sm hover:bg-stone-100 transition shadow-lg transform hover:scale-105 duration-200">Shop
+                        Lucky Teas on Amazon →</a>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- General Analysis Section -->
+        <div id="genAnalysisArea"
+            class="hidden mt-8 w-full animate-in slide-in-from-bottom-10 fade-in duration-1000 delay-300">
+            <div
+                class="bg-stone-950 text-stone-300 rounded-[40px] p-8 md:p-12 shadow-2xl border border-stone-800 relative overflow-hidden">
+                <!-- Background Pattern -->
+                <div
+                    class="absolute top-0 right-0 w-64 h-64 bg-amber-900/10 rounded-full blur-[100px] pointer-events-none">
+                </div>
+
+                <h3 class="serif text-3xl text-amber-500 text-center mb-10 tracking-wide">Detailed Pattern Analysis</h3>
+
+                <div class="space-y-8">
+                    <!-- Personality -->
+                    <div
+                        class="bg-stone-900/50 rounded-2xl p-6 md:p-8 border border-stone-800 hover:border-amber-900/30 transition duration-500">
+                        <div class="flex items-center gap-4 mb-4">
+                            <span class="bg-stone-800 p-3 rounded-full text-xl shadow-inner text-amber-500">🧠</span>
+                            <h4 class="font-bold text-stone-100 text-lg tracking-wide uppercase text-xs">Core
+                                Personality
+                            </h4>
+                        </div>
+                        <p id="genPersonality" class="text-stone-400 leading-relaxed text-sm md:text-base"></p>
+                    </div>
+
+                    <!-- Life Stages -->
+                    <div>
+                        <h4 class="text-center text-xs uppercase tracking-[0.3em] text-stone-500 mb-6 font-bold">
+                            Seasonal
+                            Life Flow</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div
+                                class="bg-stone-900/50 rounded-2xl p-6 border border-stone-800 hover:bg-stone-900 transition">
+                                <h4 class="font-bold text-amber-700 text-xs uppercase tracking-widest mb-2">Early Years
+                                    (0-19)</h4>
+                                <p id="genYear" class="text-xs text-stone-400 leading-loose"></p>
+                            </div>
+                            <div
+                                class="bg-stone-900/50 rounded-2xl p-6 border border-stone-800 hover:bg-stone-900 transition">
+                                <h4 class="font-bold text-amber-700 text-xs uppercase tracking-widest mb-2">Youth
+                                    (20-39)
+                                </h4>
+                                <p id="genMonth" class="text-xs text-stone-400 leading-loose"></p>
+                            </div>
+                            <div
+                                class="bg-stone-900/50 rounded-2xl p-6 border border-stone-800 hover:bg-stone-900 transition">
+                                <h4 class="font-bold text-amber-700 text-xs uppercase tracking-widest mb-2">Middle Age
+                                    (40-59)</h4>
+                                <p id="genDay" class="text-xs text-stone-400 leading-loose"></p>
+                            </div>
+                            <div
+                                class="bg-stone-900/50 rounded-2xl p-6 border border-stone-800 hover:bg-stone-900 transition">
+                                <h4 class="font-bold text-amber-700 text-xs uppercase tracking-widest mb-2">Late Years
+                                    (60+)
+                                </h4>
+                                <p id="genHour" class="text-xs text-stone-400 leading-loose"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Wealth & Career -->
+                    <div
+                        class="bg-gradient-to-br from-stone-900 to-stone-950 rounded-2xl p-6 md:p-8 border border-amber-900/20 shadow-lg relative overflow-hidden">
+                        <div
+                            class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-700 to-transparent opacity-50">
+                        </div>
+                        <div class="flex items-center gap-4 mb-4">
+                            <span class="bg-black/30 p-3 rounded-full text-xl shadow-inner text-amber-500">�</span>
+                            <h4 class="font-bold text-stone-100 text-lg tracking-wide uppercase text-xs">Social & Career
+                                Potential</h4>
+                        </div>
+                        <div id="genWealth" class="text-stone-400 leading-relaxed text-sm md:text-base space-y-2"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Footer Area -->
-    <footer class="text-center py-8 text-gray-400 border-t border-gray-100">
-        <p class="text-xs uppercase tracking-widest font-semibold">Created by Dr. Byungjoo Park</p>
+
+    <!-- Footer / Profile Area -->
+    <footer class="bg-gray-50 text-center py-12 border-t border-gray-100">
+        <div class="max-w-2xl mx-auto px-6">
+            <h3 class="serif text-2xl text-gray-800 mb-6 font-bold">About the Creator</h3>
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+                <p class="font-bold text-lg text-gray-900 mb-2">Dr. Byungjoo Park</p>
+                <div class="space-y-2 text-sm text-gray-600 leading-relaxed">
+                    <p>Ph.D. in Metallurgical Engineering, Yonsei University</p>
+                    <p>Former Research Fellow, National Institute for Materials Science (NIMS), Japan</p>
+                    <p>Licensed Acupuncturist, California</p>
+                    <p>Registered Patent Agent, USPTO</p>
+                    <p class="pt-2 text-gray-500 italic">Father of Peter Park and Sophia Park, the youngest bar exam
+                        passers in California history.</p>
+                </div>
+            </div>
+            <p class="text-xs text-gray-400 mt-8 uppercase tracking-widest">© 2026 Tea Therapy. All Rights Reserved.</p>
+        </div>
     </footer>
 
     <script>
-        let gender = "Male";
-        const GAN = ["갑(甲)", "을(을)", "병(丙)", "정(丁)", "무(戊)", "기(기)", "경(庚)", "신(辛)", "임(壬)", "계(癸)"];
-        const ZHI = ["자(子)", "축(丑)", "인(寅)", "묘(卯)", "진(진)", "사(巳)", "오(午)", "미(미)", "신(申)", "유(酉)", "술(술)", "해(해)"];
+        const GAN = ["Wood +", "Wood -", "Fire +", "Fire -", "Earth +", "Earth -", "Metal +", "Metal -", "Water +", "Water -"];
+        const ZHI = ["Mouse", "Ox", "Tiger", "Rabbit", "Dragon", "Snake", "Horse", "Sheep", "Monkey", "Rooster", "Dog", "Pig"];
         const GAN_EL = ["Wood", "Wood", "Fire", "Fire", "Earth", "Earth", "Metal", "Metal", "Water", "Water"];
         const ZHI_EL = ["Water", "Earth", "Wood", "Wood", "Earth", "Fire", "Fire", "Earth", "Metal", "Metal", "Earth", "Water"];
 
-        function setGender(g) {
-            gender = g;
-            document.getElementById('btnMale').className = g === 'Male' ? 'flex-1 py-3 border rounded-xl font-semibold btn-active' : 'flex-1 py-3 border rounded-xl font-semibold';
-            document.getElementById('btnFemale').className = g === 'Female' ? 'flex-1 py-3 border rounded-xl font-semibold btn-active' : 'flex-1 py-3 border rounded-xl font-semibold';
+        // Dynamic Theme Colors for Result Area
+        const THEME_COLORS = {
+            "Wood": { bg: "bg-green-900", accent: "text-green-600", badge: "bg-green-600" },
+            "Fire": { bg: "bg-red-900", accent: "text-red-500", badge: "bg-red-600" },
+            "Earth": { bg: "bg-amber-900", accent: "text-amber-600", badge: "bg-amber-600" },
+            "Metal": { bg: "bg-slate-800", accent: "text-slate-500", badge: "bg-slate-500" },
+            "Water": { bg: "bg-blue-950", accent: "text-blue-600", badge: "bg-blue-600" }
+        };
+
+        // Interpretation Data (Refined with Positive Language)
+        const DM_DESC = [
+            "Like a tall pine tree, you are straight-forward, dependable, and have strong leadership qualities. You are principled and protective of your people.", // 甲 Yang Wood
+            "Like a flexible vine or flower, you are adaptable, gentle, and strategic. You have a resilient spirit that thrives in changing environments.", // 乙 Yin Wood
+            "Like the sun, you are passionate, generous, and visible. You have a warm presence that naturally attracts attention and energizes others.", // 丙 Yang Fire
+            "Like a candlelight, you are focused, detail-oriented, and thoughtful. You possess a warm inner heart and deep dedication.", // 丁 Yin Fire
+            "Like a mountain, you are trustworthy, stable, and have a heavy, grounding presence. You hold secrets well and are deeply reliable.", // 戊 Yang Earth
+            "Like garden soil, you are nurturing, productive, and multi-talented. You excel at cultivating potential in yourself and others.", // 己 Yin Earth
+            "Like a sword or raw iron, you are decisive, just, and hold high standards. You value loyalty and have the courage to take action.", // 庚 Yang Metal
+            "Like jewelry or a gemstone, you are delicate, precise, and have a refined taste. You shine brightest when you are appreciated and polished.", // 辛 Yin Metal
+            "Like the ocean, you are vast, intelligent, and adaptable. You possess great depth and wisdom that allows you to handle any situation.", // 壬 Yang Water
+            "Like rain or mist, you are gentle, intuitive, and quiet. You have a persistent nature that influences surroundings softly but effectively." // 癸 Yin Water
+        ];
+
+        const ELEMENT_LIFE_DESC = {
+            "Wood": "growth, creativity, and new beginnings. This period fosters curiosity and a drive to explore.",
+            "Fire": "passion, expression, and visibility. This is a time of high energy and social expansion.",
+            "Earth": "stability, trust, and grounding. A period for building solid foundations and connecting with others.",
+            "Metal": "discipline, structure, and refinement. A time for sharpening skills and establishing order.",
+            "Water": "wisdom, adaptability, and flow. A period of deep learning, introspection, and flexibility."
+        };
+
+        const ELEMENT_WEALTH_ADVICE = {
+            "Wood": "Growth & Planning. You profit from new ventures, education, design, or textiles. Consistency and long-term vision bring you fortune.",
+            "Fire": "Passion & Media. You thrive in technology, energy, entertainment, or marketing. Fast-paced environments and visibility boost your income.",
+            "Earth": "Assets & Trust. Real estate, banking, farming, or consulting suits you. Building trust and holding physical assets secures your wealth.",
+            "Metal": "Precision & Systems. Finance, law, engineering, or management are your goldmines. Efficiency and decisiveness are your money-makers.",
+            "Water": "Flow & Trade. Logistics, travel, sales, or communication are key. Adaptability and networking bring you financial success."
+        };
+
+        const ELEMENT_CAREER_ADVICE = {
+            "Wood": "Benevolence & Expansion. Leadership roles that involve teaching, creating, or nurturing growth suit you best.",
+            "Fire": "Courtesy & Radiance. Roles requiring presentation, public speaking, or innovation allow you to shine.",
+            "Earth": "Trust & Stability. Roles requiring confidentiality, reliability, and mediation make you indispensable.",
+            "Metal": "Justice & Order. Roles requiring judgment, execution, or systematic organization utilize your strengths.",
+            "Water": "Wisdom & Strategy. Roles requiring deep thinking, research, or negotiation allow your fluid intelligence to work."
+        };
+
+        // Background Colors for Pillars (Solid boxes)
+        const EL_BG_COLORS = {
+            "Wood": "bg-green-600 text-white border-green-700",
+            "Fire": "bg-red-500 text-white border-red-600",
+            "Earth": "bg-amber-500 text-white border-amber-600",
+            "Metal": "bg-slate-400 text-white border-slate-500",
+            "Water": "bg-blue-800 text-white border-blue-900"
+        };
+        const ELEMENT_COLOR_NAME = {
+            "Wood": "Green", "Fire": "Red", "Earth": "Yellow/Brown", "Metal": "White/Silver", "Water": "Black/Blue"
+        };
+
+        // Add Event Listener to auto-check DST on date change
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('date').addEventListener('change', checkDSTandUpdateUI);
+        });
+
+        // --- US DST Logic (Historical) ---
+        function getNthSunday(year, month, n) {
+            const date = new Date(year, month - 1, 1);
+            const day = date.getDay();
+            const diff = (day === 0 ? 0 : 7 - day) + (n - 1) * 7;
+            return 1 + diff;
+        }
+
+        function getLastSunday(year, month) {
+            const date = new Date(year, month, 0);
+            const day = date.getDay();
+            return date.getDate() - day;
+        }
+
+        function isUSDST(dateStr) {
+            if (!dateStr) return false;
+            const date = new Date(dateStr); // Local date from input string
+            const y = date.getFullYear();
+            const m = date.getMonth() + 1;
+            const d = date.getDate();
+
+            // Create a comparable value for current date: MMDD
+            // (Assumes simplistic comparison, precise date object comparison is better for ranges)
+            const current = new Date(y, m - 1, d);
+
+            // 1. WWII War Time (Year-round DST): Feb 9, 1942 - Sept 30, 1945
+            const warStart = new Date(1942, 1, 9); // Feb 9
+            const warEnd = new Date(1945, 8, 30);  // Sept 30
+            if (current >= warStart && current <= warEnd) return true;
+
+            // 2. WWI DST (1918-1919)
+            if (y === 1918) {
+                // Mar 31 - Oct 27
+                const start = new Date(1918, 2, 31);
+                const end = new Date(1918, 9, 27);
+                return current >= start && current < end;
+            }
+            if (y === 1919) {
+                // Mar 30 - Oct 26
+                const start = new Date(1919, 2, 30);
+                const end = new Date(1919, 9, 26);
+                return current >= start && current < end;
+            }
+
+            // 3. 1946-1965: No federal standard (Assumed Standard Time for simplicity as per request context)
+            if (y < 1966 && y > 1945) return false;
+
+            // 4. Uniform Time Act Rules
+            let startM, startD, endM, endD;
+
+            if (y >= 2007) {
+                // 2007+: 2nd Sun March - 1st Sun Nov
+                startM = 3; startD = getNthSunday(y, 3, 2);
+                endM = 11; endD = getNthSunday(y, 11, 1);
+            } else if (y >= 1987) {
+                // 1987-2006: 1st Sun April - Last Sun Oct
+                startM = 4; startD = getNthSunday(y, 4, 1);
+                endM = 10; endD = getLastSunday(y, 10);
+            } else if (y >= 1966) {
+                // 1966-1986: Last Sun April - Last Sun Oct
+                startM = 4; startD = getLastSunday(y, 4);
+                endM = 10; endD = getLastSunday(y, 10);
+            } else {
+                // Before 1918 or undefined periods -> Default Standard
+                return false;
+            }
+
+            // Compare for Standard periods
+            // Start Date (02:00 am - effectively start of day for this boolean check)
+            const dstStart = new Date(y, startM - 1, startD);
+            const dstEnd = new Date(y, endM - 1, endD);
+
+            return current >= dstStart && current < dstEnd;
+        }
+
+        function checkDSTandUpdateUI() {
+            const dateVal = document.getElementById('date').value;
+            const statusDiv = document.getElementById('dstStatus');
+            if (isUSDST(dateVal)) {
+                statusDiv.innerText = "Auto DST Applied";
+                statusDiv.classList.remove('hidden');
+            } else {
+                statusDiv.classList.add('hidden');
+            }
+        }
+
+        function getPillarHtml(ganIdx, zhiIdx) {
+            const ganEl = GAN_EL[ganIdx];
+            const zhiEl = ZHI_EL[zhiIdx];
+            // Render as colored boxes with English text without text coloring
+            return `
+                <div class="w-full py-1.5 rounded ${EL_BG_COLORS[ganEl]} border shadow-sm">${GAN[ganIdx]}</div>
+                <div class="w-full py-1.5 rounded ${EL_BG_COLORS[zhiEl]} border shadow-sm">${ZHI[zhiIdx]}</div>
+            `;
+        }
+
+        // Helper to colorize element keywords in text
+        function highlightKeywords(text) {
+            if (!text) return "";
+            return text
+                .replace(/\bWood\b/g, '<span class="font-bold text-green-600">Wood</span>')
+                .replace(/\bFire\b/g, '<span class="font-bold text-red-600">Fire</span>')
+                .replace(/\bEarth\b/g, '<span class="font-bold text-amber-600">Earth</span>')
+                .replace(/\bMetal\b/g, '<span class="font-bold text-slate-500">Metal</span>')
+                .replace(/\bWater\b/g, '<span class="font-bold text-blue-600">Water</span>');
+        }
+
+        function getGenAnalysis(dG, dZ, yG, mG, hG, counts) {
+            const myEl = GAN_EL[dG];
+            // Simple Relationship Logic
+            const elMap = ["Wood", "Fire", "Earth", "Metal", "Water"];
+            const myIdx = elMap.indexOf(myEl);
+
+            // Wealth: Element I Control (My Index + 2)
+            const wealthIdx = (myIdx + 2) % 5;
+            const wealthEl = elMap[wealthIdx];
+
+            // Career: Element Controlling Me (My Index - 2 or + 3)
+            const careerIdx = (myIdx + 3) % 5;
+            const careerEl = elMap[careerIdx];
+
+            return {
+                personality: highlightKeywords(DM_DESC[dG]),
+                wealth: `
+                    <p class="mb-2"><b>Your Wealth Element is ${highlightKeywords(wealthEl)}:</b> ${highlightKeywords(ELEMENT_WEALTH_ADVICE[wealthEl])}</p>
+                    <p class="text-xs text-amber-700/70 border-t border-amber-200/50 pt-2 mt-2">
+                        ${counts[wealthEl] > 0 ? "✅ You have this potential naturally in your chart." : "⚠️ This element is missing/weak. Seek these fields or partners intentionally."}
+                    </p>
+                    <p class="mt-4 mb-2"><b>Your Career Guide is ${highlightKeywords(careerEl)}:</b> ${highlightKeywords(ELEMENT_CAREER_ADVICE[careerEl])}</p>
+                `,
+                yearDesc: `Your roots are colored by <b>${highlightKeywords(GAN_EL[yG])}</b> energy, characterizing your early years with ${highlightKeywords(ELEMENT_LIFE_DESC[GAN_EL[yG]])}`,
+                monthDesc: `Your youth and social environment are influenced by <b>${highlightKeywords(GAN_EL[mG])}</b>, bringing a theme of ${highlightKeywords(ELEMENT_LIFE_DESC[GAN_EL[mG]])}`,
+                dayDesc: `Your mature self is grounded in <b>${highlightKeywords(GAN_EL[dG])}</b>, emphasizing ${highlightKeywords(ELEMENT_LIFE_DESC[GAN_EL[dG]])}`,
+                hourDesc: `Your later years and legacy reflect <b>${highlightKeywords(GAN_EL[hG])}</b> qualities, suggesting a time of ${highlightKeywords(ELEMENT_LIFE_DESC[GAN_EL[hG]])}`
+            };
         }
 
         function calculate() {
             const dateStr = document.getElementById('date').value;
             const timeStr = document.getElementById('time').value;
-            const applyCorrection = document.getElementById('koreaTime').checked;
-            if(!dateStr || !timeStr) return;
+            // Auto-detect instead of manual check
+            const applyCorrection = isUSDST(dateStr);
+
+            if (!dateStr || !timeStr) {
+                alert("Please enter birth date and time");
+                return;
+            }
 
             let [hour, min] = timeStr.split(':').map(Number);
-            if(applyCorrection) {
-                min -= 30;
-                if(min < 0) { min += 60; hour -= 1; }
-                if(hour < 0) hour += 24;
+            if (applyCorrection) {
+                hour -= 1;
+                if (hour < 0) {
+                    hour += 24;
+                }
             }
 
             const birth = new Date(dateStr);
@@ -110,7 +514,7 @@
 
             const termDays = [0, 5, 4, 6, 5, 6, 6, 7, 8, 8, 8, 7, 7];
             let mZ = (d < termDays[m]) ? (m === 1 ? 11 : m) : (m % 12) + 1;
-            if(m===1 && d>=termDays[1]) mZ = 1; else if(m===2 && d>=termDays[2]) mZ = 2; else if(d>=termDays[m]) mZ = m;
+            if (m === 1 && d >= termDays[1]) mZ = 1; else if (m === 2 && d >= termDays[2]) mZ = 2; else if (d >= termDays[m]) mZ = m;
             const mG = (((yG % 10 % 5) * 2 + 2 + (mZ + 10) % 12) % 10);
 
             const dIdx = (Math.floor((new Date(dateStr).getTime() - new Date('1900-01-01').getTime()) / 86400000) + 10) % 60;
@@ -119,36 +523,104 @@
             const hZ = Math.floor(((hour + 1) % 24) / 2);
             const hG = (((dG % 5) * 2 + hZ) % 10);
 
-            document.getElementById('yP').innerText = GAN[yG] + ZHI[yZ];
-            document.getElementById('mP').innerText = GAN[mG] + ZHI[mZ];
-            document.getElementById('dP').innerText = GAN[dG] + ZHI[dZ];
-            document.getElementById('hP').innerText = GAN[hG] + ZHI[hZ];
-            document.getElementById('resultArea').classList.remove('hidden');
+            // Render Pillars: Hour, Day, Month, Year
+            document.getElementById('hP').innerHTML = getPillarHtml(hG, hZ);
+            document.getElementById('dP').innerHTML = getPillarHtml(dG, dZ);
+            document.getElementById('mP').innerHTML = getPillarHtml(mG, mZ);
+            document.getElementById('yP').innerHTML = getPillarHtml(yG, yZ);
+
+            // Show pillar display area
+            document.getElementById('pillarDisplay').classList.remove('hidden');
+
+            const resultArea = document.getElementById('resultArea');
+            resultArea.classList.remove('hidden');
 
             const counts = { Wood: 0, Fire: 0, Earth: 0, Metal: 0, Water: 0 };
             [GAN_EL[yG], ZHI_EL[yZ], GAN_EL[mG], ZHI_EL[mZ], GAN_EL[dG], ZHI_EL[dZ], GAN_EL[hG], ZHI_EL[hZ]].forEach(el => counts[el]++);
-            document.getElementById('elementCounts').innerHTML = `<span>WOOD: ${counts.Wood}</span><span>FIRE: ${counts.Fire}</span><span>EARTH: ${counts.Earth}</span><span>METAL: ${counts.Metal}</span><span>WATER: ${counts.Water}</span>`;
+            document.getElementById('elementCounts').innerHTML = highlightKeywords(`<span>WOOD: ${counts.Wood}</span><span>FIRE: ${counts.Fire}</span><span>EARTH: ${counts.Earth}</span><span>METAL: ${counts.Metal}</span><span>WATER: ${counts.Water}</span>`);
 
             let yongSin = Object.keys(counts).reduce((a, b) => counts[a] < counts[b] ? a : b);
-            if(counts.Wood >= 4) yongSin = (counts.Fire === 0) ? "Fire" : "Metal";
+            if (counts.Wood >= 4) yongSin = (counts.Fire === 0) ? "Fire" : "Metal";
+
+            // --- Dynamic Theme Coloring ---
+            // Reset common bg classes
+            resultArea.className = "mt-8 w-full animate-in fade-in zoom-in duration-500 rounded-[50px] p-8 md:p-12 text-white relative shadow-2xl overflow-hidden min-h-[600px] flex flex-col justify-center transform transition-colors duration-1000";
+            // Apply new dynamic class
+            resultArea.classList.add(THEME_COLORS[yongSin].bg);
 
             const teaData = {
-                Wood: { name: "Peppermint Tea", desc: "Refreshing and cooling. Peppermint helps smooth stagnant Wood energy and supports liver flow.", query: "Peppermint+Tea" },
-                Fire: { name: "Hibiscus Tea", desc: "Vibrant and heart-warming. Hibiscus adds the Fire element to improve circulation and vitality.", query: "Hibiscus+Tea" },
-                Earth: { name: "Ginger Turmeric Tea", desc: "Grounded and earthy. This golden blend supports digestion and provides Earth-like stability.", query: "Ginger+Turmeric+Tea" },
-                Metal: { name: "Premium White Tea", desc: "Pure and refined. White tea strengthens the Metal element, helping with focus and clarity.", query: "White+Tea" },
-                Water: { name: "English Breakfast", desc: "Deep and grounding. Rich black tea replenishes your Water energy and inner wisdom.", query: "English+Breakfast+Tea" }
+                Wood: {
+                    teas: [
+                        { name: "Green Tea", desc: "Fresh and vitalizing to support new growth." },
+                        { name: "Peppermint Tea", desc: "Cooling and clearing to help Wood energy extend freely." }
+                    ],
+                    query: "Green+Peppermint+Tea"
+                },
+                Fire: {
+                    teas: [
+                        { name: "Black Tea (Earl Grey)", desc: "Warm and lifting. Supports the Heart and circulation." },
+                        { name: "Rooibos Tea", desc: "A naturally caffeine-free red tea that ignites gentle warmth." }
+                    ],
+                    query: "Earl+Grey+Rooibos+Tea"
+                },
+                Earth: {
+                    teas: [
+                        { name: "Chamomile Tea", desc: "Soothing and settling for the stomach and center." },
+                        { name: "Barley / Corn Silk Tea", desc: "Earthy, sweet, and grounding to stabilize energy." }
+                    ],
+                    query: "Chamomile+Barley+Tea"
+                },
+                Metal: {
+                    teas: [
+                        { name: "Ginger Tea", desc: "Pungent and dispersing to clear the Lungs and focus." },
+                        { name: "White Tea", desc: "Pure and light to refine and cleanse the system." }
+                    ],
+                    query: "Ginger+White+Tea"
+                },
+                Water: {
+                    teas: [
+                        { name: "Berry Tea", desc: "Dark and rich fluids to nourish the Kidneys." },
+                        { name: "Pu-erh Tea", desc: "Deeply fermented and grounding to store wisdom." }
+                    ],
+                    query: "Berry+Puerh+Tea"
+                }
             };
 
             const result = teaData[yongSin];
-            document.getElementById('targetElement').innerText = yongSin;
-            document.getElementById('teaName').innerText = result.name;
-            document.getElementById('teaDesc').innerText = result.desc;
-            document.getElementById('amazonLink').href = `https://www.amazon.com/s?k=${result.query}`;
-            document.getElementById('analysisDesc').innerHTML = `As a <b>${gender}</b>, your energy profile has been carefully calculated. ${counts.Wood >= 4 ? "Your 'Wood' energy is very dominant. We recommend <b>Fire</b> to help this intensity flow smoothly into warmth." : `To achieve your elemental harmony, the energy of <b>${yongSin}</b> is most beneficial for you today.`}`;
+            const targetElDiv = document.getElementById('targetElement');
+            targetElDiv.innerHTML = `<span class="px-6 py-2 rounded-full ${THEME_COLORS[yongSin].badge} text-white shadow-md inline-block mb-2 font-bold">${yongSin} Energy</span>`;
+
+            // Render 2 Teas
+            document.getElementById('tea1Name').innerText = "1. " + result.teas[0].name;
+            document.getElementById('tea1Desc').innerHTML = highlightKeywords(result.teas[0].desc);
+            document.getElementById('tea2Name').innerText = "2. " + result.teas[1].name;
+            document.getElementById('tea2Desc').innerText = highlightKeywords(result.teas[1].desc);
+
+            // Lifestyle Tip
+            document.getElementById('lifestyleTip').innerHTML = highlightKeywords(`Boost your vitality by keeping <b>${ELEMENT_COLOR_NAME[yongSin]}</b> close to you. Setting your <b>phone wallpaper</b> to a ${yongSin.toLowerCase()} landscape or wearing <b>${ELEMENT_COLOR_NAME[yongSin]} clothes</b> can act as a daily habit to balance your deficient energy.`);
+
+            // Amazon Affiliate Link
+            // REPLACE 'saju-tea-20' WITH YOUR ACTUAL AMAZON ASSOCIATE TAG
+            const amazonTag = "ricecakeusa-20";
+            document.getElementById('amazonLink').href = `https://www.amazon.com/s?k=${result.query}&tag=${amazonTag}`;
+
+            const dstMsg = applyCorrection ? " w/ DST Correction" : "";
+            document.getElementById('analysisDesc').innerHTML = `your energy profile shows a need for <b class="${THEME_COLORS[yongSin].accent}">${yongSin}</b>. We have selected teas and colors to fill this gap and restore harmony.`;
+
+            // --- Enable General Analysis ---
+            const genData = getGenAnalysis(dG, dZ, yG, mG, hG, counts);
+            document.getElementById('genPersonality').innerHTML = genData.personality;
+            document.getElementById('genWealth').innerHTML = genData.wealth;
+            document.getElementById('genYear').innerHTML = genData.yearDesc;
+            document.getElementById('genMonth').innerHTML = genData.monthDesc;
+            document.getElementById('genDay').innerHTML = genData.dayDesc;
+            document.getElementById('genHour').innerHTML = genData.hourDesc;
+
+            document.getElementById('genAnalysisArea').classList.remove('hidden');
 
             window.scrollTo({ top: document.getElementById('resultArea').offsetTop - 20, behavior: 'smooth' });
         }
     </script>
 </body>
+
 </html>
